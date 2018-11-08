@@ -7,7 +7,15 @@ services:
     working_dir: /usr/src/app
     volumes:
       - ./:/usr/src/app
+      - db-volume:/db
     env_file:
       - docker/app.env
     command: flask run --host=0.0.0.0
     restart: "no"
+  db:
+    build: ./docker/db
+    volumes:
+      - db-volume:/db
+    restart: "no"
+volumes:
+  db-volume:

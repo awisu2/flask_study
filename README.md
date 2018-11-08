@@ -6,6 +6,8 @@ commands
 --------
 
 - run: `docker-compose up`
+- init-db: `docker-compose run app flask innit-db`
+  - it's need after run db
 
 config
 ------
