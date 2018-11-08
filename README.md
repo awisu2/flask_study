@@ -5,8 +5,7 @@ flask_study
 commands
 --------
 
-- run: `python hello.py`
-  - run on development: `FLASK_ENV=development python hello.py`
+- run: `docker-compose up`
 
 config
 ------
