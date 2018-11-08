@@ -6,6 +6,10 @@ commands
 --------
 
 - run: `docker-compose up`
+- init-db: `docker-compose run app flask innit-db`
+  - it's need after run db
+- test: `docker-compose run app pip install -e . && pytest`
+  - test on coverage: `docker-compose run app pip install -e . && coverage run -m pytest`
 
 config
 ------
