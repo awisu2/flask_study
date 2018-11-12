@@ -11,7 +11,9 @@ fi
 
 # create venv
 create_venv() {
-  python -m venv venv
+  if [ ! -d "venv" ]; then
+    python -m venv venv
+  fi
   source venv/bin/activate
   pip install -r requirements.txt
 }
@@ -24,13 +26,15 @@ clear_venv() {
 
 run() {
   MODE=${1}
+
   create_venv
   zappa "${MODE}"
-  clear_venv
+  # clear_venv
 }
 
 # deploy
 case "${MODE}" in
+  "init" ) run "create_venv" ;;
   "deploy" ) run "deploy" ;;
   "update" ) run "update" ;;
   "undeploy" ) run "undeploy" ;;
