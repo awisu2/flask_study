@@ -38,7 +38,7 @@ case "${MODE}" in
   "deploy" ) run "deploy" ;;
   "update" ) run "update" ;;
   "undeploy" ) run "undeploy" ;;
-  "*" ) echo "deploy, update, undeployのいずれかを指定してください。(default: update)";;
+  * ) echo "deploy, update, undeploy, initのいずれかを指定してください。(default: update)";;
 esac
 
 exit 0
