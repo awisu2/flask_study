@@ -1,22 +1,27 @@
 version: '3'
 services:
+  db:
+    image: mysql:8
+    command: --default-authentication-plugin=mysql_native_password
+    volumes:
+      - db-volume:/var/lib/mysql
+    ports:
+      - 3306:3306
+    env_file:
+      - docker/db.env
+    restart: "no"
   app:
     build: ./docker/app
     working_dir: /usr/src/app
     volumes:
       - ./:/usr/src/app
-      - db-volume:/db
     env_file:
       - docker/app.env
     command: >
-      flask run --host=0.0.0.0
+      dockerize -wait tcp://db:3306 -timeout 5m -wait-retry-interval 5s bash -c "
+      python main.py"
     ports:
       - 5000:5000
-    restart: "no"
-  db:
-    build: ./docker/db
-    volumes:
-      - db-volume:/db
     restart: "no"
 volumes:
   db-volume:

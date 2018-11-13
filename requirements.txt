@@ -1,2 +1,6 @@
-flask
+Flask
+sqlalchemy
+PyMySQL
+sqlalchemy-migrate
+
 zappa
