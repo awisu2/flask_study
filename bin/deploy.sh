@@ -34,7 +34,7 @@ run() {
 
 # deploy
 case "${MODE}" in
-  "init" ) run "create_venv" ;;
+  "init" ) create_venv ;;
   "deploy" ) run "deploy" ;;
   "update" ) run "update" ;;
   "undeploy" ) run "undeploy" ;;
