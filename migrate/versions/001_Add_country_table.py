@@ -3,9 +3,10 @@ from migrate import *
 
 meta = MetaData()
 
-country = Table('country', meta,
+country = Table('users', meta,
                 Column('id', Integer, primary_key=True),
-                Column('country_name', String(32))
+                Column('email', String(255)),
+                Column('password', String(255), nullable=False)
                 )
 
 def upgrade(migrate_engine):
