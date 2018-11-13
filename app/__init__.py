@@ -1,5 +1,5 @@
 from flask import Flask
-from app.libs import db, config
+from app.libs import config
 
 app = Flask(__name__)
 config.read(app)

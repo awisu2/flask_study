@@ -1,4 +1,4 @@
-from app.libs import db
+from app.libs.db import Db
 
 def init_app(app):
   @app.route('/')
@@ -8,7 +8,9 @@ def init_app(app):
   @app.route('/create')
   def create():
     try:
-      engine = db.get_connection(app)
+      db = Db.get_instance(app)
+      connection = db.get_connection()
+      print('engine', engine)
       # Create a new record
       sql = """CREATE TABLE `users` (
           `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -17,35 +19,36 @@ def init_app(app):
           PRIMARY KEY (`id`)
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin
       AUTO_INCREMENT=1 ;"""
-      engine.execute(sql)
+      connection.execute(sql)
     finally:
-      engine.close()
+      connection.close()
 
     return "create"
 
   @app.route('/insert')
   def insert():
     try:
-      engine = db.get_connection(app)
+      db = Db.get_instance(app)
+      connection = db.get_connection(app)
       # Create a new record
       sql = "INSERT INTO `users` (`email`, `password`) VALUES (%s, %s)"
-      engine.execute(sql, ('webmaster@python.org', 'very-secret'))
+      connection.execute(sql, ('webmaster@python.org', 'very-secret'))
     finally:
-      engine.close()
+      connection.close()
 
     return "inserted!"
 
   @app.route('/get')
   def read():
     try:
-      engine = db.get_connection(app)
-      print('engine', engine)
+      db = Db.get_instance(app)
+      connection = db.get_connection()
 
       # Read a single record
       sql = "SELECT `id`, `password` FROM `users` WHERE `email`=%s"
-      rows = engine.execute(sql, ('webmaster@python.org',))
+      rows = connection.execute(sql, ('webmaster@python.org',))
     finally:
-      engine.close()
+      connection.close()
 
     result = ""
     for v in rows:
