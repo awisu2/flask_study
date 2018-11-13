@@ -8,6 +8,6 @@ RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSI
 WORKDIR /usr/src/app
 
 RUN pip install Flask
-RUN pip install sqlalchemy PyMySQL
+RUN pip install sqlalchemy PyMySQL sqlalchemy-migrate
 
 RUN pip install pytest coverage

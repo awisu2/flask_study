@@ -18,8 +18,9 @@ commands
 - test: `docker-compose run app pip install -e . && pytest`
   - test on coverage: `docker-compose run app pip install -e . && coverage run -m pytest`
 - migrate:
-  - `cd migrate` and `python manage.py upgrade`
-    - `RUNMODE=local`
+  - `sh bin/migrate.sh upgrade`
+    - change runmode: change `RUNMODE` of the environment. (dev, local, prod)
+    - for docker-compose: `docker-compose run app sh bin/migrate.sh upgrade`
 
 deploy & update
 ---------------
