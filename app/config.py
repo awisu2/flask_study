@@ -1,3 +1,5 @@
+import os
+
 class DefaultConfig:
   SECRET_KEY = 'secret key!?'
 
@@ -14,6 +16,5 @@ class DevelopConfig:
 class ProductionConfig:
   ENV = 'production'
   DEBUG = False
-
-  SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://user:password@db/mydb?charset=utf8mb4'
+  SQLALCHEMY_DATABASE_URI = os.getenv('DB_URL')
 

@@ -17,6 +17,9 @@ commands
   - it's need after run db
 - test: `docker-compose run app pip install -e . && pytest`
   - test on coverage: `docker-compose run app pip install -e . && coverage run -m pytest`
+- migrate:
+  - `cd migrate` and `python manage.py upgrade`
+    - `RUNMODE=local`
 
 deploy & update
 ---------------
