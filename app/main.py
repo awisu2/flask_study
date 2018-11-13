@@ -8,7 +8,7 @@ def init_app(app):
   @app.route('/create')
   def create():
     try:
-      db = Db.get_instance(app)
+      db = Db.get_instance(app=app)
       connection = db.get_connection()
       print('engine', engine)
       # Create a new record
@@ -28,8 +28,8 @@ def init_app(app):
   @app.route('/insert')
   def insert():
     try:
-      db = Db.get_instance(app)
-      connection = db.get_connection(app)
+      db = Db.get_instance(app=app)
+      connection = db.get_connection()
       # Create a new record
       sql = "INSERT INTO `users` (`email`, `password`) VALUES (%s, %s)"
       connection.execute(sql, ('webmaster@python.org', 'very-secret'))
@@ -41,7 +41,7 @@ def init_app(app):
   @app.route('/get')
   def read():
     try:
-      db = Db.get_instance(app)
+      db = Db.get_instance(app=app)
       connection = db.get_connection()
 
       # Read a single record
